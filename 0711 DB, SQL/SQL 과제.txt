@@ -1,0 +1,17 @@
+-- 과제 1
+
+(1)
+SELECT C.CustomerID, P.Price * D.Quantity AS Sales_amt
+FROM Customers AS C
+JOIN Orders AS O ON C.CustomerID = O.CustomerID
+JOIN OrderDetails AS D ON O.OrderID = D.OrderID
+JOIN Products AS P ON P.ProductID = D.ProductID
+Group BY C.CustomerID;
+
+(2)
+SELECT A.CategoryName, SUM(D.Quantity) AS Total_Q, D.Quantity * P.Price AS Total_pamt
+FROM OrderDetails AS D
+JOIN Products AS P ON D.ProductID = P.ProductID
+JOIN Categories AS A ON A.CategoryID = P.CategoryID
+GROUP BY A.CategoryName
+HAVING Total_Q >= 2000;
